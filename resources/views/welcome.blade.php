@@ -147,6 +147,71 @@
         </div>
     </nav>
 
+    <!-- Registration Modal -->
+    <div id="register-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md">
+            <div class="bg-white rounded-xl shadow-2xl p-8 transform transition-all duration-300 opacity-0 translate-y-4"
+                id="register-modal-content">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-900">Create Account</h2>
+                    <button id="close-register" class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <form>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="first-name" class="form-label">First Name</label>
+                            <input type="text" id="first-name" class="input-field" placeholder="John" required>
+                        </div>
+                        <div>
+                            <label for="last-name" class="form-label">Last Name</label>
+                            <input type="text" id="last-name" class="input-field" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="register-email" class="form-label">Email Address</label>
+                        <input type="email" id="register-email" class="input-field" placeholder="name@example.com"
+                            required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" id="phone" class="input-field" placeholder="(123) 456-7890">
+                    </div>
+                    <div class="mb-4">
+                        <label for="register-password" class="form-label">Password</label>
+                        <input type="password" id="register-password" class="input-field" placeholder="••••••••"
+                            required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="confirm-password" class="form-label">Confirm Password</label>
+                        <input type="password" id="confirm-password" class="input-field" placeholder="••••••••"
+                            required>
+                    </div>
+                    <div class="flex items-center mb-6">
+                        <input id="terms" type="checkbox"
+                            class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded" required>
+                        <label for="terms" class="ml-2 block text-sm text-gray-700">
+                            I agree to the <a href="#" class="text-primary-700 hover:text-primary-800">Terms of
+                                Service</a> and <a href="#"
+                                class="text-primary-700 hover:text-primary-800">Privacy Policy</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn-primary w-full mb-4">Create Account</button>
+                    <div class="text-center">
+                        <span class="text-sm text-gray-600">Already have an account? </span>
+                        <a href="#" id="show-login"
+                            class="text-primary-700 hover:text-primary-800 text-sm font-medium">Sign In</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Login Modal -->
     <div id="login-modal" class="fixed inset-0 z-50 hidden">
         <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
@@ -677,6 +742,68 @@
             }
         });
 
+
+        // Registration modal functionality
+        const registerModal = document.getElementById('register-modal');
+        const registerModalContent = document.getElementById('register-modal-content');
+        const signUpLinks = document.querySelectorAll('a[href="#"][class*="text-primary-700"]:not(#show-login)');
+        const closeRegisterButton = document.getElementById('close-register');
+        const showLoginLink = document.getElementById('show-login');
+
+        // Open registration modal when clicking "Sign Up" links
+        signUpLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Hide login modal if open
+                modalContent.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => {
+                    loginModal.classList.add('hidden');
+                    // Show register modal
+                    registerModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        registerModalContent.classList.remove('opacity-0', 'translate-y-4');
+                    }, 10);
+                }, 300);
+            });
+        });
+
+        // Close register modal
+        closeRegisterButton.addEventListener('click', function() {
+            // Animate out
+            registerModalContent.classList.add('opacity-0', 'translate-y-4');
+            // Hide the modal after animation
+            setTimeout(() => {
+                registerModal.classList.add('hidden');
+            }, 300);
+        });
+
+        // Switch from register to login
+        showLoginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Hide register modal
+            registerModalContent.classList.add('opacity-0', 'translate-y-4');
+            setTimeout(() => {
+                registerModal.classList.add('hidden');
+                // Show login modal
+                loginModal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalContent.classList.remove('opacity-0', 'translate-y-4');
+                }, 10);
+            }, 300);
+        });
+
+        // Close modal when clicking outside
+        registerModal.addEventListener('click', function(e) {
+            if (e.target === registerModal) {
+                // Animate out
+                registerModalContent.classList.add('opacity-0', 'translate-y-4');
+                // Hide the modal after animation
+                setTimeout(() => {
+                    registerModal.classList.add('hidden');
+                }, 300);
+            }
+        });
+
         // Section animations on scroll
         document.addEventListener('DOMContentLoaded', function() {
             const sections = document.querySelectorAll('.section-animate');
@@ -699,4 +826,5 @@
         });
     </script>
 </body>
+
 </html>
