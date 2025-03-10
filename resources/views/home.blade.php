@@ -632,10 +632,6 @@
                         <li><a href="#" class="text-gray-300 hover:text-white transition">Home</a></li>
                         <li><a href="#cars" class="text-gray-300 hover:text-white transition">Browse Cars</a></li>
                         <li><a href="#services" class="text-gray-300 hover:text-white transition">Services</a></li>
-                        <li><a href="#how-it-works" class="text-gray-300 hover:text-white transition">How It Works</a>
-                        </li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition">About Us</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition">Contact</a></li>
                     </ul>
                 </div>
 
