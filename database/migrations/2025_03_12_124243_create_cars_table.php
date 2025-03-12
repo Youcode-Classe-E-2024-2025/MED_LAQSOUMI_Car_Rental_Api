@@ -21,7 +21,8 @@ return new class extends Migration
             $table->integer('seats');
             $table->decimal('price_per_day', 8, 2);
             $table->boolean('available')->default(true);
-            $table->timestamps();
+            $table->date('created_at')->useCurrent();
+            $table->date('updated_at')->useCurrent();
         });
     }
 
