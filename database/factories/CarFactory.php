@@ -17,14 +17,13 @@ class CarFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'=> $this->faker->unique()->randomNumber(),
             'name' => $this->faker->name,
             'brand' => $this->faker->word,
             'model' => $this->faker->word,
             'year' => $this->faker->year,
             'color' => $this->faker->colorName,
-            'seats' => $this->faker->numberBetween(2, 7),
-            'price_per_day' => $this->faker->randomFloat(2, 50, 500),
+            'seats' => $this->faker->numberBetween(5, 7),
+            'price_per_day' => $this->faker->numberBetween(30, 50),
             'available' => $this->faker->boolean,
             'created_at' => $this->faker->date(),
             'updated_at' => $this->faker->date(),
