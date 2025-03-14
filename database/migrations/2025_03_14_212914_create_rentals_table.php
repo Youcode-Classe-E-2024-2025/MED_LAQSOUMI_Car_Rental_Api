@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('rentals', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('car_id')->constrained()->onDelete('cascade');
+            $table->date('from');
+            $table->date('to');
+            $table->integer('total_price');
             $table->timestamps();
         });
+        
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('rentals');

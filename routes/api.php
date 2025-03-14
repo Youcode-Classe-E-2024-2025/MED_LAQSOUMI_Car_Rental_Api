@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use Illuminate\Container\Attributes\Auth;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\RentalController;
 
 
 
@@ -18,12 +20,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // CARS
 
-Route::get('cars', [CarController::class, 'index']);
-Route::get('cars/{id}', [CarController::class, 'show']);
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('cars', [CarController::class, 'store']);
-    Route::put('cars/{id}', [CarController::class, 'update']);
-    Route::delete('cars/{id}', [CarController::class, 'delete']);
-});
+Route::resources([
+    'cars' => CarController::class,
+]);
 
+// RENTALS
+Route::resources([
+    'rentals' => RentalController::class,
+]);
 
