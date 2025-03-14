@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Illuminate\Container\Attributes\Auth;
 use App\Http\Controllers\CarController;
-use App\Http\Controllers\RentalController;
+use App\Http\Controllers\RentalsController;
 
 
 
@@ -26,6 +26,6 @@ Route::resources([
 
 // RENTALS
 Route::resources([
-    'rentals' => RentalController::class,
+    'rentals' => RentalsController::class,
 ]);
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rentals;
 
-class RentalController extends Controller
+class RentalsController extends Controller
 {
     public function index()
     {
