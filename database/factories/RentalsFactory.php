@@ -17,6 +17,7 @@ class RentalsFactory extends Factory
     public function definition(): array
     {
         return [
+            'id' => $this->faker->unique()->numberBetween(1, 10),
             'car_id' => $this->faker->numberBetween(1, 10),
             'from' => $this->faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d'),
             'to' => $this->faker->dateTimeBetween('now', '+1 month')->format('Y-m-d'),
