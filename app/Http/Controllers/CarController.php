@@ -2,44 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Car;
+use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
     public function index()
     {
-        return response()->json(Car::all());
+        $Car = Car::paginate(5);
+        return response()->json($Car);
     }
 
     public function store(Request $request)
     {
-        $validated =$request->validate([
-            'name' => 'required',
-            'brand' => 'required',
-            'model' => 'required',
-            'year' => 'required',
-            'color' => 'required',
-            'seats' => 'required',
-            'price_per_day' => 'required',
-            'available' => 'required',
-        ]);
-        $car = Car::create($validated);
-        return response()->json($car);
-
+        $car = Car::create($request->all());
+        return response()->json($car, 201);
     }
 
     public function show($id)
     {
-        return response()->json(Car::find($id));
+        $car = Car::find($id);
+        return response()->json($car);
     }
 
-
-
-    public function delete(Request $request, $id)
+    
+    public function update(Request $request, $id)
     {
-        $car = Car::findOrFail($id);
-        $car->delete();
+        $car = Car::find($id);
+        $car->update($request->all());
+        return response()->json($car);
+    }
+    public function destroy($id)
+    {
+        Car::destroy($id);
         return response()->json(null, 204);
     }
 }
