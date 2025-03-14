@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Container\Attributes\Auth;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\RentalsController;
+use App\Http\Controllers\PaymentsController;
 
 
 
@@ -29,3 +30,8 @@ Route::resources([
     'rentals' => RentalsController::class,
 ]);
 
+//PAYMENTS
+
+Route::resources([
+    'payments' => PaymentsController::class,
+]);
