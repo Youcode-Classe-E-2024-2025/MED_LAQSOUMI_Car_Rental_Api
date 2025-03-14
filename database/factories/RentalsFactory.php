@@ -22,8 +22,8 @@ class RentalsFactory extends Factory
             'from' => $this->faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d'),
             'to' => $this->faker->dateTimeBetween('now', '+1 month')->format('Y-m-d'),
             'total_price' => $this->faker->randomFloat(2, 100, 1000),
-            'created_at' => $this->faker->now(),
-            'updated_at' => $this->faker->now(),
+            'created_at' => $this->faker->date(),
+            'updated_at' => $this->faker->date(),
         ];
     }
 }
