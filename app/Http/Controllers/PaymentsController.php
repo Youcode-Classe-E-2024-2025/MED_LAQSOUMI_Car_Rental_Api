@@ -13,6 +13,11 @@ use Stripe\Checkout\Session as StripeSession;
 
 class PaymentsController extends Controller
 {
+    public function index()
+    {
+        $payments = Payments::all();
+        return response()->json($payments);
+    }
     
     public function create(Request $request)
     {
